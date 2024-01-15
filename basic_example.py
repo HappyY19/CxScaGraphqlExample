@@ -38,10 +38,10 @@ token_req_data = {
 token = get_new_token(token_url="https://platform.checkmarx.net/identity/connect/token", request_data=token_req_data)
 
 # Select your transport with a defined url endpoint
-transport = AIOHTTPTransport(url="https://api-sca.checkmarx.net", headers={'Authorization': token})
+transport = AIOHTTPTransport(url="https://api-sca.checkmarx.net/graphql/graphql", headers={'Authorization': token})
 
 # Create a GraphQL client using the defined transport
-client = Client(transport=transport, fetch_schema_from_transport=True)
+client = Client(transport=transport, fetch_schema_from_transport=False)
 
 # Provide a GraphQL query
 query = gql(
