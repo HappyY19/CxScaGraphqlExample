@@ -47,13 +47,24 @@ client = Client(transport=transport, fetch_schema_from_transport=False)
 query = gql(
     """
     query {
-     privateDependencies {
+     privateDependencies (where:{     totalVersionsCount: { gt: 0}    }  skip: 10  take: 10  order: {packageName:DESC}) {
          items {
+             id
              packageName
              packageManager
-         }
-     }
-}
+             severity
+             resolvedBy
+             useByProjectsCount
+             projectId
+             totalVersionsCount
+             useByProjectsOutdatedCount
+             dependenciesCount
+             isCorrelated
+             projectName
+             tags { key, value }
+          }
+      }
+   }
 """
 )
 
